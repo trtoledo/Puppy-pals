@@ -1,14 +1,11 @@
-import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-import {puppyList} from './data.js'
+import {useState} from 'react';
+import {puppyList} from './data.js';
 import styles from './App.module.css';
-import './App.css'
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
-  console.log(puppyList)
-  const [puppies, setPuppies] = useState(puppyList)
+  const [puppies, setPuppies] = useState(puppyList);
+  const [featuredPup, setFeatPupId] = useState(null);
 
   return (
     <div className={styles['appContainer']}>
@@ -17,14 +14,15 @@ function App() {
         <h2>Click on a puppy to see more info</h2>
         {puppies.map((puppy) => (
           <p
-            onClick={() => setFeatPupId(puppy.id)}
+            onClick={() => setFeatPupId(puppy)}
             key={puppy.id}
             className={styles['puppy']}
           >
             {puppy.name}
           </p>
         ))}
-      </div > {featPupId && (
+      </div>
+      {featuredPup && (
         <div className={styles['featured']}>
           <h2>{featuredPup.name}</h2>
           <ul>
@@ -36,10 +34,9 @@ function App() {
             </li>
           </ul>
         </div>
-      )}</div>
-
-
+      )}
+    </div>
   );
 }
 
-export default App
+export default App;
